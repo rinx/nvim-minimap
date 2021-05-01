@@ -28,7 +28,8 @@
 
 (defn- init-commands []
   (nvim.ex.command_ :MinimapOpen (viml->lua :open {}))
-  (nvim.ex.command_ :MinimapClose (viml->lua :close {})))
+  (nvim.ex.command_ :MinimapClose (viml->lua :close {}))
+  (nvim.ex.command_ :MinimapRefresh (viml->lua :refresh {})))
 
 (defn- init-autocmds []
   (nvim.ex.augroup :MinimapAutocmds)

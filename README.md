@@ -3,7 +3,7 @@ nvim-minimap
 
 Show minimap using Neovim floating window.
 
-![demo](https://user-images.githubusercontent.com/1588935/116778784-08e29d80-aaaf-11eb-8df6-cd8018e94dbe.gif)
+![demo](https://user-images.githubusercontent.com/1588935/116784089-3b02f800-aacd-11eb-9828-2e14e0e5d818.gif)
 
 Fully written in Fennel (a Lisp dialects that compiled to Lua script). Doesn't requires external libraries/commands.
 
@@ -33,6 +33,7 @@ Commands
 
 - `:MinimapOpen` - show minimap window
 - `:MinimapClose` - close minimap window
+- `:MinimapRefresh` - refresh minimap window
 
 
 Configurations
