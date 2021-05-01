@@ -57,6 +57,7 @@ Similar Projects
 - [Xuyuanp/scrollbar.nvim](https://github.com/Xuyuanp/scrollbar.nvim)
 - [severin-lemaignan/vim-minimap](https://github.com/severin-lemaignan/vim-minimap)
 
+This plugin is built using [Olical/aniseed](https://github.com/Olical/aniseed).
 
 TODO
 ---
