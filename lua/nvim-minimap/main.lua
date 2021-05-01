@@ -39,6 +39,13 @@ local nvim = _local_0_[5]
 local _2amodule_2a = _0_0
 local _2amodule_name_2a = "nvim-minimap.main"
 do local _ = ({nil, _0_0, nil, {{}, nil, nil, nil}})[2] end
+local state
+do
+  local v_0_ = (((_0_0)["aniseed/locals"]).state or {opened = false})
+  local t_0_ = (_0_0)["aniseed/locals"]
+  t_0_["state"] = v_0_
+  state = v_0_
+end
 local viml__3elua
 do
   local v_0_
@@ -72,9 +79,19 @@ do
   do
     local v_0_0
     local function refresh0()
-      local buf = vim.fn.bufnr("%")
-      float["clear-buf"]()
-      return render(buf)
+      if state.opened then
+        local buf = vim.fn.bufnr("%")
+        local ft = nvim.bo[buf].ft
+        local excludes_3f
+        local function _2_(x)
+          return (x == ft)
+        end
+        excludes_3f = a.some(_2_, config["get-in"]({"filetype", "excludes"}))
+        if not excludes_3f then
+          float["clear-buf"]()
+          return render(buf)
+        end
+      end
     end
     v_0_0 = refresh0
     _0_0["refresh"] = v_0_0
@@ -91,6 +108,7 @@ do
     local v_0_0
     local function open0()
       local buf = vim.fn.bufnr("%")
+      state.opened = true
       float["open-win"]()
       return render(buf)
     end
@@ -108,6 +126,7 @@ do
   do
     local v_0_0
     local function close0()
+      state.opened = false
       return float["close-win"]()
     end
     v_0_0 = close0

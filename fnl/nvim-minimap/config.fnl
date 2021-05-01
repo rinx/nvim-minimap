@@ -5,6 +5,8 @@
 
 (defonce- defaults
   {:default_auto_cmds_enabled 1
+   :filetype {:excludes [:help
+                         :qf]}
    :window {:width 20
             :height 10}})
 
@@ -27,4 +29,5 @@
   (->> (ks->name [:test])
        (a.get nvim.g))
   (get-in [:test])
-  (get-in [:window :height]))
+  (get-in [:window :height])
+  (get-in [:filetype :excludes]))

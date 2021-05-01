@@ -5,6 +5,9 @@
              config nvim-minimap.config
              minimap nvim-minimap.minimap}})
 
+(defonce- state
+  {:opened false})
+
 (defn- viml->lua [name opts]
   (.. "lua require('" *module-name* "')['" name "']("
       (or (and opts opts.args) "") ")"))
@@ -14,16 +17,25 @@
       (float.write-arr-to-buf)))
 
 (defn refresh []
-  (let [buf (vim.fn.bufnr :%)]
-    (float.clear-buf)
-    (render buf)))
+  (when state.opened
+    (let [buf (vim.fn.bufnr :%)
+          ft (. (. nvim.bo buf) :ft)
+          excludes? (a.some
+                      (fn [x]
+                        (= x ft))
+                      (config.get-in [:filetype :excludes]))]
+      (when (not excludes?)
+        (float.clear-buf)
+        (render buf)))))
 
 (defn open []
   (let [buf (vim.fn.bufnr :%)]
+    (set state.opened true)
     (float.open-win)
     (render buf)))
 
 (defn close []
+  (set state.opened false)
   (float.close-win))
 
 (defn- init-commands []
