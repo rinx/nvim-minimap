@@ -41,7 +41,7 @@ local _2amodule_name_2a = "nvim-minimap.main"
 do local _ = ({nil, _0_0, nil, {{}, nil, nil, nil}})[2] end
 local state
 do
-  local v_0_ = (((_0_0)["aniseed/locals"]).state or {opened = false})
+  local v_0_ = (((_0_0)["aniseed/locals"]).state or {["running-timer"] = nil, opened = false})
   local t_0_ = (_0_0)["aniseed/locals"]
   t_0_["state"] = v_0_
   state = v_0_
@@ -60,18 +60,27 @@ end
 local render
 do
   local v_0_
-  do
-    local v_0_0
-    local function render0(buf)
-      return float["write-arr-to-buf"](minimap.minimap(buf))
-    end
-    v_0_0 = render0
-    _0_0["render"] = v_0_0
-    v_0_ = v_0_0
+  local function render0(buf)
+    return float["write-arr-to-buf"](minimap.minimap(buf))
   end
+  v_0_ = render0
   local t_0_ = (_0_0)["aniseed/locals"]
   t_0_["render"] = v_0_
   render = v_0_
+end
+local stop_timer
+do
+  local v_0_
+  local function stop_timer0(timer)
+    if not timer:is_closing() then
+      timer:stop()
+      return timer:close()
+    end
+  end
+  v_0_ = stop_timer0
+  local t_0_ = (_0_0)["aniseed/locals"]
+  t_0_["stop-timer"] = v_0_
+  stop_timer = v_0_
 end
 local refresh
 do
@@ -88,8 +97,19 @@ do
         end
         excludes_3f = a.some(_2_, config["get-in"]({"filetype", "excludes"}))
         if not excludes_3f then
-          float["clear-buf"]()
-          return render(buf)
+          if state["running-timer"] then
+            stop_timer(state["running-timer"])
+            state["running-timer"] = nil
+          end
+          local timer = vim.loop.new_timer()
+          local function _4_()
+            float["clear-buf"]()
+            render(buf)
+            return stop_timer(timer)
+          end
+          timer:start(20, 0, vim.schedule_wrap(_4_))
+          state["running-timer"] = timer
+          return nil
         end
       end
     end

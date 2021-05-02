@@ -6,15 +6,21 @@
              minimap nvim-minimap.minimap}})
 
 (defonce- state
-  {:opened false})
+  {:opened false
+   :running-timer nil})
 
 (defn- viml->lua [name opts]
   (.. "lua require('" *module-name* "')['" name "']("
       (or (and opts opts.args) "") ")"))
 
-(defn render [buf]
+(defn- render [buf]
   (-> (minimap.minimap buf)
       (float.write-arr-to-buf)))
+
+(defn- stop-timer [timer]
+  (when (not (timer:is_closing))
+    (timer:stop)
+    (timer:close)))
 
 (defn refresh []
   (when state.opened
@@ -25,8 +31,19 @@
                         (= x ft))
                       (config.get-in [:filetype :excludes]))]
       (when (not excludes?)
-        (float.clear-buf)
-        (render buf)))))
+        (when state.running-timer
+          (stop-timer state.running-timer)
+          (set state.running-timer nil))
+        (let [timer (vim.loop.new_timer)]
+          (timer:start
+            20
+            0
+            (vim.schedule_wrap
+              (fn []
+                (float.clear-buf)
+                (render buf)
+                (stop-timer timer))))
+          (set state.running-timer timer))))))
 
 (defn open []
   (let [buf (vim.fn.bufnr :%)]
