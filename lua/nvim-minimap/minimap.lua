@@ -122,10 +122,13 @@ do
   local function scale0(factor, ls)
     local x_factor = factor
     local __3escale
-    local function _2_(l)
-      return {["end"] = (l["end"] * x_factor), begin = (l.begin * x_factor)}
+    local function _3_(_2_0)
+      local _arg_0_ = _2_0
+      local begin = _arg_0_["begin"]
+      local _end = _arg_0_["end"]
+      return {["end"] = (_end * x_factor), begin = (begin * x_factor)}
     end
-    __3escale = _2_
+    __3escale = _3_
     return a.map(__3escale, ls)
   end
   v_0_ = scale0
@@ -166,8 +169,9 @@ do
     for i = 0, 100, 2 do
       local b_idx = 0
       for j, v in ipairs(chunk) do
-        local begin = v.begin
-        local _end = v["end"]
+        local _let_0_ = v
+        local begin = _let_0_["begin"]
+        local _end = _let_0_["end"]
         local di = a.dec(i)
         local dj = a.dec(j)
         if ((begin <= di) and (_end > di)) then
@@ -213,5 +217,5 @@ do
   t_0_["minimap"] = v_0_
   minimap = v_0_
 end
--- (->braille (braille-idx 0 0)) (->braille (braille-idx 0 0) (braille-idx 1 0) (braille-idx 0 2)) (scale 0.25 table: 0x7f4f2ef8b3d0) (->chunks 4 table: 0x7f4f2f144e80) (->line table: 0x7f4f2f0fe188) (minimap (vim.fn.bufnr %))
+-- (->braille (braille-idx 0 0)) (->braille (braille-idx 0 0) (braille-idx 1 0) (braille-idx 0 2)) (scale 0.25 table: 0x7faa427f8d20) (->chunks 4 table: 0x7faa427a2e00) (->line table: 0x7faa427c59c0) (minimap (vim.fn.bufnr %))
 return nil

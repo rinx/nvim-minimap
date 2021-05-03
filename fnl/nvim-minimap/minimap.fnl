@@ -57,9 +57,9 @@
 (defn- scale [factor ls]
   (let [x-factor factor
         ; y-factor (* factor 4) ;; TODO: y-scale
-        ->scale (fn [l]
-                  {:begin (* (. l :begin) x-factor)
-                   :end (* (. l :end) x-factor)})]
+        ->scale (fn [{: begin : end}]
+                  {:begin (* begin x-factor)
+                   :end (* end x-factor)})]
     (a.map ->scale ls)))
 
 (defn- ->chunks [n ls]
@@ -83,8 +83,7 @@
   (for [i 0 100 2] ; TODO: early break
     (var b-idx 0)
     (each [j v (ipairs chunk)]
-      (let [begin (. v :begin)
-            end (. v :end)
+      (let [{: begin : end} v
             di (a.dec i)
             dj (a.dec j)]
         (when (and (<= begin di)
