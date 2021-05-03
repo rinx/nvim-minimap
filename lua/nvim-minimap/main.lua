@@ -157,12 +157,33 @@ do
   t_0_["close"] = v_0_
   close = v_0_
 end
+local toggle
+do
+  local v_0_
+  do
+    local v_0_0
+    local function toggle0()
+      if state.opened then
+        return close()
+      else
+        return open()
+      end
+    end
+    v_0_0 = toggle0
+    _0_0["toggle"] = v_0_0
+    v_0_ = v_0_0
+  end
+  local t_0_ = (_0_0)["aniseed/locals"]
+  t_0_["toggle"] = v_0_
+  toggle = v_0_
+end
 local init_commands
 do
   local v_0_
   local function init_commands0()
     nvim.ex.command_("MinimapOpen", viml__3elua("open", {}))
     nvim.ex.command_("MinimapClose", viml__3elua("close", {}))
+    nvim.ex.command_("MinimapToggle", viml__3elua("toggle", {}))
     return nvim.ex.command_("MinimapRefresh", viml__3elua("refresh", {}))
   end
   v_0_ = init_commands0
@@ -203,5 +224,5 @@ do
   t_0_["init"] = v_0_
   init = v_0_
 end
--- (open) (close) (render (vim.fn.bufnr %)) (refresh)
+-- (open) (close) (toggle) (render (vim.fn.bufnr %)) (refresh)
 return nil

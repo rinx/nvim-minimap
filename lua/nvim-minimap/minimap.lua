@@ -217,5 +217,5 @@ do
   t_0_["minimap"] = v_0_
   minimap = v_0_
 end
--- (->braille (braille-idx 0 0)) (->braille (braille-idx 0 0) (braille-idx 1 0) (braille-idx 0 2)) (scale 0.25 table: 0x7faa427f8d20) (->chunks 4 table: 0x7faa427a2e00) (->line table: 0x7faa427c59c0) (minimap (vim.fn.bufnr %))
+-- (->braille (braille-idx 0 0)) (->braille (braille-idx 0 0) (braille-idx 1 0) (braille-idx 0 2)) (scale 0.25 table: 0x7fb9b2622230) (->chunks 4 table: 0x7fb9b2435f80) (->line table: 0x7fb9b216e5a8) (minimap (vim.fn.bufnr %))
 return nil

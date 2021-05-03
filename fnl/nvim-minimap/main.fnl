@@ -55,9 +55,15 @@
   (set state.opened false)
   (float.close-win))
 
+(defn toggle []
+  (if state.opened
+    (close)
+    (open)))
+
 (defn- init-commands []
   (nvim.ex.command_ :MinimapOpen (viml->lua :open {}))
   (nvim.ex.command_ :MinimapClose (viml->lua :close {}))
+  (nvim.ex.command_ :MinimapToggle (viml->lua :toggle {}))
   (nvim.ex.command_ :MinimapRefresh (viml->lua :refresh {})))
 
 (defn- init-autocmds []
@@ -66,8 +72,7 @@
   (nvim.ex.autocmd
     "WinEnter,BufEnter,FocusGained,CursorMoved,CursorMovedI,VimResized,QuitPre" "*"
     (.. "silent! " (viml->lua :refresh {})))
-  (nvim.ex.augroup :END)
-  )
+  (nvim.ex.augroup :END))
 
 (defn init []
   (init-commands)
@@ -77,5 +82,6 @@
 (comment
   (open)
   (close)
+  (toggle)
   (render (vim.fn.bufnr :%))
   (refresh))

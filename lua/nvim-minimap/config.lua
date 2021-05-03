@@ -80,5 +80,5 @@ do
   t_0_["get-in"] = v_0_
   get_in = v_0_
 end
--- (->> (ks->name table: 0x7faa42b19368) (a.get nvim.g)) (get-in table: 0x7faa4289a2d8) (get-in table: 0x7faa425c14e8) (get-in table: 0x7faa425d7240)
+-- (->> (ks->name table: 0x7fb9b234dc38) (a.get nvim.g)) (get-in table: 0x7fb9b234ea10) (get-in table: 0x7fb9b234f160) (get-in table: 0x7fb9b234fa30)
 return nil

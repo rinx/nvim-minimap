@@ -33,6 +33,7 @@ Commands
 
 - `:MinimapOpen` - show minimap window
 - `:MinimapClose` - close minimap window
+- `:MinimapToggle` - toggle
 - `:MinimapRefresh` - refresh minimap window
 
 

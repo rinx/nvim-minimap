@@ -179,5 +179,5 @@ do
   t_0_["clear-buf"] = v_0_
   clear_buf = v_0_
 end
--- (def buf (nvim.create_buf false true)) (def opts table: 0x7faa4287b3b0) (nvim.open_win buf 0 opts) (make-buf-and-win) (open-win) (write-arr-to-buf table: 0x7faa42a35740) (write-arr-to-buf table: 0x7faa42964058) (clear-buf) (close-win)
+-- (def buf (nvim.create_buf false true)) (def opts table: 0x7fb9b23a6ad8) (nvim.open_win buf 0 opts) (make-buf-and-win) (open-win) (write-arr-to-buf table: 0x7fb9b2363c50) (write-arr-to-buf table: 0x7fb9b23619c0) (clear-buf) (close-win)
 return nil
