@@ -60,12 +60,24 @@
              -1
              true)))))
 
+(defn- clear-highlights []
+  (when state.win-id
+    (each [i h (ipairs (vim.fn.getmatches state.win-id))]
+      (vim.fn.matchdelete h.id state.win-id))))
+
 (defn clear-buf []
+  (clear-highlights)
   (write-arr-to-buf []))
 
 (defn window-info []
   (when state.win-id
     (a.first (vim.fn.getwininfo state.win-id))))
+
+(defn highlight-range [{: top : bottom}]
+  (when state.win-id
+    (let [hlgroup (config.get-in [:highlight :group])]
+      (for [i (vim.fn.floor top) (vim.fn.ceil bottom)]
+        (vim.fn.matchaddpos hlgroup [i] 10 -1 {:window state.win-id})))))
 
 (comment
   (def buf (nvim.create_buf false true))

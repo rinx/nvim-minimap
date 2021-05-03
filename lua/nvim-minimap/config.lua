@@ -39,7 +39,7 @@ local _2amodule_name_2a = "nvim-minimap.config"
 do local _ = ({nil, _0_0, nil, {{}, nil, nil, nil}})[2] end
 local defaults
 do
-  local v_0_ = (((_0_0)["aniseed/locals"]).defaults or {default_auto_cmds_enabled = 1, filetype = {excludes = {"help", "qf"}}, window = {height = 10, width = 20}})
+  local v_0_ = (((_0_0)["aniseed/locals"]).defaults or {default_auto_cmds_enabled = 1, filetype = {excludes = {"help", "qf"}}, highlight = {group = "MinimapCurrentLine"}, window = {height = 10, width = 20}})
   local t_0_ = (_0_0)["aniseed/locals"]
   t_0_["defaults"] = v_0_
   defaults = v_0_
@@ -80,5 +80,5 @@ do
   t_0_["get-in"] = v_0_
   get_in = v_0_
 end
--- (->> (ks->name table: 0x7fe3af781590) (a.get nvim.g)) (get-in table: 0x7fe3af782368) (get-in table: 0x7fe3af782ab8) (get-in table: 0x7fe3af783388)
+-- (->> (ks->name table: 0x7f8212b343a8) (a.get nvim.g)) (get-in table: 0x7f8212ce2df0) (get-in table: 0x7f8212b2fe50) (get-in table: 0x7f8212bfb6b0)
 return nil

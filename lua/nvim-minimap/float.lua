@@ -163,12 +163,29 @@ do
   t_0_["write-arr-to-buf"] = v_0_
   write_arr_to_buf = v_0_
 end
+local clear_highlights
+do
+  local v_0_
+  local function clear_highlights0()
+    if state["win-id"] then
+      for i, h in ipairs(vim.fn.getmatches(state["win-id"])) do
+        vim.fn.matchdelete(h.id, state["win-id"])
+      end
+      return nil
+    end
+  end
+  v_0_ = clear_highlights0
+  local t_0_ = (_0_0)["aniseed/locals"]
+  t_0_["clear-highlights"] = v_0_
+  clear_highlights = v_0_
+end
 local clear_buf
 do
   local v_0_
   do
     local v_0_0
     local function clear_buf0()
+      clear_highlights()
       return write_arr_to_buf({})
     end
     v_0_0 = clear_buf0
@@ -197,5 +214,30 @@ do
   t_0_["window-info"] = v_0_
   window_info = v_0_
 end
--- (def buf (nvim.create_buf false true)) (def opts table: 0x7fe3af98bd88) (nvim.open_win buf 0 opts) (make-buf-and-win) (open-win) (write-arr-to-buf table: 0x7fe3af98bdd0) (write-arr-to-buf table: 0x7fe3af8bb118) (clear-buf) (close-win) (window-info)
+local highlight_range
+do
+  local v_0_
+  do
+    local v_0_0
+    local function highlight_range0(_2_0)
+      local _arg_0_ = _2_0
+      local bottom = _arg_0_["bottom"]
+      local top = _arg_0_["top"]
+      if state["win-id"] then
+        local hlgroup = config["get-in"]({"highlight", "group"})
+        for i = vim.fn.floor(top), vim.fn.ceil(bottom) do
+          vim.fn.matchaddpos(hlgroup, {i}, 10, -1, {window = state["win-id"]})
+        end
+        return nil
+      end
+    end
+    v_0_0 = highlight_range0
+    _0_0["highlight-range"] = v_0_0
+    v_0_ = v_0_0
+  end
+  local t_0_ = (_0_0)["aniseed/locals"]
+  t_0_["highlight-range"] = v_0_
+  highlight_range = v_0_
+end
+-- (def buf (nvim.create_buf false true)) (def opts table: 0x7f8212c97f50) (nvim.open_win buf 0 opts) (make-buf-and-win) (open-win) (write-arr-to-buf table: 0x7f8212c99bd8) (write-arr-to-buf table: 0x7f8212b16960) (clear-buf) (close-win) (window-info)
 return nil

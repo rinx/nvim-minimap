@@ -7,6 +7,7 @@
   {:default_auto_cmds_enabled 1
    :filetype {:excludes [:help
                          :qf]}
+   :highlight {:group :MinimapCurrentLine}
    :window {:width 20
             :height 10}})
 

@@ -68,22 +68,22 @@ do
     local cur_win_bottom = vim.fn.line("w$")
     local cur_win_lines = (cur_win_bottom - cur_win_top)
     if (cur_win_lines > display_lines) then
-      return {bottom = (cur_win_top + display_lines), top = cur_win_top}
+      return {bottom = (cur_win_top + display_lines), current = {bottom = minimap_window.height, top = 1}, top = cur_win_top}
     else
       local hrest = ((display_lines - cur_win_lines) / 2)
       local top_canditate = (cur_win_top - vim.fn.floor(hrest))
       local bottom_canditate = (cur_win_bottom + vim.fn.ceil(hrest))
       if (top_canditate > 0) then
         if (bottom_canditate <= total) then
-          return {bottom = bottom_canditate, top = top_canditate}
+          return {bottom = bottom_canditate, current = {bottom = (minimap_window.height - (hrest * scale_factor)), top = (hrest * scale_factor)}, top = top_canditate}
         else
-          return {bottom = "$", top = top_canditate}
+          return {bottom = "$", current = {bottom = ((hrest + cur_win_lines) * scale_factor), top = (hrest * scale_factor)}, top = top_canditate}
         end
       else
         if (display_lines <= total) then
-          return {bottom = a.inc(display_lines), top = 1}
+          return {bottom = a.inc(display_lines), current = {bottom = (cur_win_bottom * scale_factor), top = (cur_win_top * scale_factor)}, top = 1}
         else
-          return {bottom = "$", top = 1}
+          return {bottom = "$", current = {bottom = minimap_window.height, top = 1}, top = 1}
         end
       end
     end
@@ -99,7 +99,8 @@ do
   local function render0(buf)
     local scale_factor = 0.25
     local range = calc_display_range(scale_factor)
-    return float["write-arr-to-buf"](minimap.minimap(buf, {["scale-factor"] = scale_factor, bottom = range.bottom, top = range.top}))
+    float["write-arr-to-buf"](minimap.minimap(buf, {["scale-factor"] = scale_factor, bottom = range.bottom, top = range.top}))
+    return float["highlight-range"](range.current)
   end
   v_0_ = render0
   local t_0_ = (_0_0)["aniseed/locals"]
@@ -243,6 +244,17 @@ do
   t_0_["init-autocmds"] = v_0_
   init_autocmds = v_0_
 end
+local define_highlights
+do
+  local v_0_
+  local function define_highlights0()
+    return nvim.ex.highlight("MinimapCurrentLine ctermfg=green guifg=green")
+  end
+  v_0_ = define_highlights0
+  local t_0_ = (_0_0)["aniseed/locals"]
+  t_0_["define-highlights"] = v_0_
+  define_highlights = v_0_
+end
 local init
 do
   local v_0_
@@ -250,6 +262,7 @@ do
     local v_0_0
     local function init0()
       init_commands()
+      define_highlights()
       if (config["get-in"]({"default_auto_cmds_enabled"}) == 1) then
         return init_autocmds()
       end
