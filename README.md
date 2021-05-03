@@ -5,9 +5,10 @@ Show minimap using Neovim floating window.
 
 ![demo](https://user-images.githubusercontent.com/1588935/116887327-26f1fe80-ac65-11eb-9ec0-d998956ab546.gif)
 
-Fully written in Fennel (a Lisp dialects that compiled to Lua script). Doesn't requires external libraries/commands.
+Fully written in [Fennel](https://fennel-lang.org/). Doesn't requires external libraries/commands.
+This plugin is built using [Olical/aniseed](https://github.com/Olical/aniseed).
 
-**Currently work in progress. Limited number of features are available.**
+**Currently work in progress.**
 
 
 Installation
@@ -61,7 +62,6 @@ Similar Projects
 - [Xuyuanp/scrollbar.nvim](https://github.com/Xuyuanp/scrollbar.nvim)
 - [severin-lemaignan/vim-minimap](https://github.com/severin-lemaignan/vim-minimap)
 
-This plugin is built using [Olical/aniseed](https://github.com/Olical/aniseed).
 
 TODO
 ---
@@ -70,5 +70,5 @@ TODO
 - [X] Highlight of current position
 - [ ] Configurable scaling factor
 - [ ] Improve performance using early break on loops
-- [ ] Window place
+- [ ] Window position
 - [ ] Automatically scale window
