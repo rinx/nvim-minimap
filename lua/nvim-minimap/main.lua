@@ -83,7 +83,7 @@ do
         if (display_lines <= total) then
           return {bottom = a.inc(display_lines), current = {bottom = (cur_win_bottom * scale_factor), top = (cur_win_top * scale_factor)}, top = 1}
         else
-          return {bottom = "$", current = {bottom = minimap_window.height, top = 1}, top = 1}
+          return {bottom = "$", current = {bottom = (cur_win_bottom * scale_factor), top = (cur_win_top * scale_factor)}, top = 1}
         end
       end
     end

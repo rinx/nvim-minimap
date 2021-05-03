@@ -239,5 +239,5 @@ do
   t_0_["highlight-range"] = v_0_
   highlight_range = v_0_
 end
--- (def buf (nvim.create_buf false true)) (def opts table: 0x7f8212c97f50) (nvim.open_win buf 0 opts) (make-buf-and-win) (open-win) (write-arr-to-buf table: 0x7f8212c99bd8) (write-arr-to-buf table: 0x7f8212b16960) (clear-buf) (close-win) (window-info)
+-- (def buf (nvim.create_buf false true)) (def opts table: 0x7f76568c9cb0) (nvim.open_win buf 0 opts) (make-buf-and-win) (open-win) (write-arr-to-buf table: 0x7f7656a98db8) (write-arr-to-buf table: 0x7f7656abb828) (clear-buf) (close-win) (window-info)
 return nil

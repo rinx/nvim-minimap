@@ -46,8 +46,8 @@
                        :bottom (* cur-win-bottom scale-factor)}}
             {:top 1
              :bottom :$
-             :current {:top 1
-                       :bottom minimap-window.height}}))))))
+             :current {:top (* cur-win-top scale-factor)
+                       :bottom (* cur-win-bottom scale-factor)}}))))))
 
 (defn- render [buf]
   (let [scale-factor 0.25
