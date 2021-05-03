@@ -57,11 +57,49 @@ do
   t_0_["viml->lua"] = v_0_
   viml__3elua = v_0_
 end
+local calc_display_range
+do
+  local v_0_
+  local function calc_display_range0(scale_factor)
+    local minimap_window = float["window-info"]()
+    local display_lines = (minimap_window.height / scale_factor)
+    local total = vim.fn.line("$")
+    local cur_win_top = vim.fn.line("w0")
+    local cur_win_bottom = vim.fn.line("w$")
+    local cur_win_lines = (cur_win_bottom - cur_win_top)
+    if (cur_win_lines > display_lines) then
+      return {bottom = (cur_win_top + display_lines), top = cur_win_top}
+    else
+      local hrest = ((display_lines - cur_win_lines) / 2)
+      local top_canditate = (cur_win_top - vim.fn.floor(hrest))
+      local bottom_canditate = (cur_win_bottom + vim.fn.ceil(hrest))
+      if (top_canditate > 0) then
+        if (bottom_canditate <= total) then
+          return {bottom = bottom_canditate, top = top_canditate}
+        else
+          return {bottom = "$", top = top_canditate}
+        end
+      else
+        if (display_lines <= total) then
+          return {bottom = a.inc(display_lines), top = 1}
+        else
+          return {bottom = "$", top = 1}
+        end
+      end
+    end
+  end
+  v_0_ = calc_display_range0
+  local t_0_ = (_0_0)["aniseed/locals"]
+  t_0_["calc-display-range"] = v_0_
+  calc_display_range = v_0_
+end
 local render
 do
   local v_0_
   local function render0(buf)
-    return float["write-arr-to-buf"](minimap.minimap(buf))
+    local scale_factor = 0.25
+    local range = calc_display_range(scale_factor)
+    return float["write-arr-to-buf"](minimap.minimap(buf, {["scale-factor"] = scale_factor, bottom = range.bottom, top = range.top}))
   end
   v_0_ = render0
   local t_0_ = (_0_0)["aniseed/locals"]

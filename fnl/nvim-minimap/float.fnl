@@ -63,6 +63,10 @@
 (defn clear-buf []
   (write-arr-to-buf []))
 
+(defn window-info []
+  (when state.win-id
+    (a.first (vim.fn.getwininfo state.win-id))))
+
 (comment
   (def buf (nvim.create_buf false true))
   (def opts {:relative :editor
@@ -79,4 +83,5 @@
   (write-arr-to-buf [])
   (write-arr-to-buf ["test1" "test2"])
   (clear-buf)
-  (close-win))
+  (close-win)
+  (window-info))

@@ -179,5 +179,23 @@ do
   t_0_["clear-buf"] = v_0_
   clear_buf = v_0_
 end
--- (def buf (nvim.create_buf false true)) (def opts table: 0x7fb9b23a6ad8) (nvim.open_win buf 0 opts) (make-buf-and-win) (open-win) (write-arr-to-buf table: 0x7fb9b2363c50) (write-arr-to-buf table: 0x7fb9b23619c0) (clear-buf) (close-win)
+local window_info
+do
+  local v_0_
+  do
+    local v_0_0
+    local function window_info0()
+      if state["win-id"] then
+        return a.first(vim.fn.getwininfo(state["win-id"]))
+      end
+    end
+    v_0_0 = window_info0
+    _0_0["window-info"] = v_0_0
+    v_0_ = v_0_0
+  end
+  local t_0_ = (_0_0)["aniseed/locals"]
+  t_0_["window-info"] = v_0_
+  window_info = v_0_
+end
+-- (def buf (nvim.create_buf false true)) (def opts table: 0x7fe3af98bd88) (nvim.open_win buf 0 opts) (make-buf-and-win) (open-win) (write-arr-to-buf table: 0x7fe3af98bdd0) (write-arr-to-buf table: 0x7fe3af8bb118) (clear-buf) (close-win) (window-info)
 return nil

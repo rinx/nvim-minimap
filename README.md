@@ -3,7 +3,7 @@ nvim-minimap
 
 Show minimap using Neovim floating window.
 
-![demo](https://user-images.githubusercontent.com/1588935/116784089-3b02f800-aacd-11eb-9828-2e14e0e5d818.gif)
+![demo](https://user-images.githubusercontent.com/1588935/116861327-e59a2880-ac3d-11eb-9eae-e6c6476685be.gif)
 
 Fully written in Fennel (a Lisp dialects that compiled to Lua script). Doesn't requires external libraries/commands.
 
@@ -65,7 +65,7 @@ This plugin is built using [Olical/aniseed](https://github.com/Olical/aniseed).
 TODO
 ---
 
-- [ ] Scroll automatically
+- [X] Scroll automatically
 - [ ] Highlight of current position
 - [ ] Configurable scaling factor
 - [ ] Improve performance using early break on loops

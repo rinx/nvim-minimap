@@ -72,8 +72,8 @@ end
 local get_buffer_lines
 do
   local v_0_
-  local function get_buffer_lines0(buf)
-    return vim.fn.getbufline(buf, 1, "$")
+  local function get_buffer_lines0(buf, top, bottom)
+    return vim.fn.getbufline(buf, top, bottom)
   end
   v_0_ = get_buffer_lines0
   local t_0_ = (_0_0)["aniseed/locals"]
@@ -206,8 +206,12 @@ do
   local v_0_
   do
     local v_0_0
-    local function minimap0(buf)
-      return __3eminimap_lines(__3echunks(4, scale(0.25, lines__3erange_list(get_buffer_lines(buf)))))
+    local function minimap0(buf, _2_0)
+      local _arg_0_ = _2_0
+      local bottom = _arg_0_["bottom"]
+      local scale_factor = _arg_0_["scale-factor"]
+      local top = _arg_0_["top"]
+      return __3eminimap_lines(__3echunks(4, scale(scale_factor, lines__3erange_list(get_buffer_lines(buf, top, bottom)))))
     end
     v_0_0 = minimap0
     _0_0["minimap"] = v_0_0
@@ -217,5 +221,5 @@ do
   t_0_["minimap"] = v_0_
   minimap = v_0_
 end
--- (->braille (braille-idx 0 0)) (->braille (braille-idx 0 0) (braille-idx 1 0) (braille-idx 0 2)) (scale 0.25 table: 0x7fb9b2622230) (->chunks 4 table: 0x7fb9b2435f80) (->line table: 0x7fb9b216e5a8) (minimap (vim.fn.bufnr %))
+-- (->braille (braille-idx 0 0)) (->braille (braille-idx 0 0) (braille-idx 1 0) (braille-idx 0 2)) (scale 0.25 table: 0x7fe3afa4b7c8) (->chunks 4 table: 0x7fe3afa3fd28) (->line table: 0x7fe3af9a86b8) (minimap (vim.fn.bufnr %))
 return nil

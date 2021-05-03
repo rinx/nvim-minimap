@@ -34,8 +34,8 @@
        (a.inc)
        (. braille-table)))
 
-(defn- get-buffer-lines [buf]
-  (vim.fn.getbufline buf 1 :$))
+(defn- get-buffer-lines [buf top bottom]
+  (vim.fn.getbufline buf top bottom))
 
 (defn- lines->range-list [lines]
   (let [f (fn [l]
@@ -99,10 +99,12 @@
 (defn- ->minimap-lines [chunks]
   (a.map ->line chunks))
 
-(defn minimap [buf]
-  (->> (get-buffer-lines buf)
+(defn minimap [buf {: top
+                    : bottom
+                    : scale-factor}]
+  (->> (get-buffer-lines buf top bottom)
        (lines->range-list)
-       (scale 0.25)
+       (scale scale-factor)
        (->chunks 4)
        (->minimap-lines)))
 

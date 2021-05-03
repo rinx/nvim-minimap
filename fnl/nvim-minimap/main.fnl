@@ -13,9 +13,38 @@
   (.. "lua require('" *module-name* "')['" name "']("
       (or (and opts opts.args) "") ")"))
 
+(defn- calc-display-range [scale-factor]
+  (let [minimap-window (float.window-info)
+        display-lines (/ minimap-window.height scale-factor)
+        total (vim.fn.line :$)
+        cur-win-top (vim.fn.line :w0)
+        cur-win-bottom (vim.fn.line :w$)
+        cur-win-lines (- cur-win-bottom cur-win-top)]
+    (if (> cur-win-lines display-lines)
+      {:top cur-win-top
+       :bottom (+ cur-win-top display-lines)}
+      (let [hrest (/ (- display-lines cur-win-lines) 2)
+            top-canditate (- cur-win-top (vim.fn.floor hrest))
+            bottom-canditate (+ cur-win-bottom (vim.fn.ceil hrest))]
+        (if (> top-canditate 0)
+          (if (<= bottom-canditate total)
+            {:top top-canditate
+             :bottom bottom-canditate}
+            {:top top-canditate
+             :bottom :$})
+          (if (<= display-lines total)
+            {:top 1
+             :bottom (a.inc display-lines)}
+            {:top 1
+             :bottom :$}))))))
+
 (defn- render [buf]
-  (-> (minimap.minimap buf)
-      (float.write-arr-to-buf)))
+  (let [scale-factor 0.25
+        range (calc-display-range scale-factor)]
+    (-> (minimap.minimap buf {:top range.top
+                              :bottom range.bottom
+                              :scale-factor scale-factor})
+        (float.write-arr-to-buf))))
 
 (defn- stop-timer [timer]
   (when (not (timer:is_closing))
