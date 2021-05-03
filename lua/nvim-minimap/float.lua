@@ -44,6 +44,21 @@ do
   t_0_["state"] = v_0_
   state = v_0_
 end
+local min
+do
+  local v_0_
+  local function min0(a0, b)
+    if (a0 < b) then
+      return a0
+    else
+      return b
+    end
+  end
+  v_0_ = min0
+  local t_0_ = (_0_0)["aniseed/locals"]
+  t_0_["min"] = v_0_
+  min = v_0_
+end
 local editor_width
 do
   local v_0_
@@ -84,7 +99,7 @@ do
   local v_0_
   local function make_win0(buf)
     local cur = nvim.get_current_win()
-    local opts = {anchor = "NE", col = editor_width(), focusable = false, height = config["get-in"]({"window", "height"}), relative = "editor", row = 0, style = "minimal", width = config["get-in"]({"window", "width"})}
+    local opts = {anchor = "NE", col = editor_width(), focusable = false, height = min(config["get-in"]({"window", "height"}), (editor_height() - 3)), relative = "editor", row = 0, style = "minimal", width = min(config["get-in"]({"window", "width"}), editor_width())}
     local win = nvim.open_win(buf, 0, opts)
     nvim.win_set_option(win, "wrap", false)
     state["win-id"] = win
@@ -239,5 +254,5 @@ do
   t_0_["highlight-range"] = v_0_
   highlight_range = v_0_
 end
--- (def buf (nvim.create_buf false true)) (def opts table: 0x7f76568c9cb0) (nvim.open_win buf 0 opts) (make-buf-and-win) (open-win) (write-arr-to-buf table: 0x7f7656a98db8) (write-arr-to-buf table: 0x7f7656abb828) (clear-buf) (close-win) (window-info)
+-- (def buf (nvim.create_buf false true)) (def opts table: 0x7fe62e845850) (nvim.open_win buf 0 opts) (make-buf-and-win) (open-win) (write-arr-to-buf table: 0x7fe62e5c6a90) (write-arr-to-buf table: 0x7fe62e6a93f8) (clear-buf) (close-win) (window-info)
 return nil

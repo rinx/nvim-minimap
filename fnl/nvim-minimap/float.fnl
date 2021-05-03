@@ -7,6 +7,9 @@
   {:buf-id nil
    :win-id nil})
 
+(defn- min [a b]
+  (if (< a b) a b))
+
 (defn- editor-width []
   nvim.o.columns)
 
@@ -21,8 +24,10 @@
 (defn- make-win [buf]
   (let [cur (nvim.get_current_win)
         opts {:relative :editor
-              :width (config.get-in [:window :width])
-              :height (config.get-in [:window :height])
+              :width (min (config.get-in [:window :width])
+                          (editor-width))
+              :height (min (config.get-in [:window :height])
+                           (- (editor-height) 3))
               :col (editor-width)
               :row 0
               :anchor :NE
