@@ -1,4 +1,5 @@
-local _0_0
+local _2afile_2a = "fnl/nvim-minimap/main.fnl"
+local _0_
 do
   local name_0_ = "nvim-minimap.main"
   local module_0_
@@ -12,37 +13,41 @@ do
   end
   module_0_["aniseed/module"] = name_0_
   module_0_["aniseed/locals"] = ((module_0_)["aniseed/locals"] or {})
-  module_0_["aniseed/local-fns"] = ((module_0_)["aniseed/local-fns"] or {})
-  package.loaded[name_0_] = module_0_
-  _0_0 = module_0_
+  do end (module_0_)["aniseed/local-fns"] = ((module_0_)["aniseed/local-fns"] or {})
+  do end (package.loaded)[name_0_] = module_0_
+  _0_ = module_0_
 end
-local autoload = (require("nvim-minimap.aniseed.autoload")).autoload
+local autoload
 local function _1_(...)
+  return (require("nvim-minimap.aniseed.autoload")).autoload(...)
+end
+autoload = _1_
+local function _2_(...)
   local ok_3f_0_, val_0_ = nil, nil
-  local function _1_()
+  local function _2_()
     return {autoload("nvim-minimap.aniseed.core"), autoload("nvim-minimap.config"), autoload("nvim-minimap.float"), autoload("nvim-minimap.minimap"), autoload("nvim-minimap.aniseed.nvim")}
   end
-  ok_3f_0_, val_0_ = pcall(_1_)
+  ok_3f_0_, val_0_ = pcall(_2_)
   if ok_3f_0_ then
-    _0_0["aniseed/local-fns"] = {autoload = {a = "nvim-minimap.aniseed.core", config = "nvim-minimap.config", float = "nvim-minimap.float", minimap = "nvim-minimap.minimap", nvim = "nvim-minimap.aniseed.nvim"}}
+    _0_["aniseed/local-fns"] = {autoload = {a = "nvim-minimap.aniseed.core", config = "nvim-minimap.config", float = "nvim-minimap.float", minimap = "nvim-minimap.minimap", nvim = "nvim-minimap.aniseed.nvim"}}
     return val_0_
   else
     return print(val_0_)
   end
 end
-local _local_0_ = _1_(...)
+local _local_0_ = _2_(...)
 local a = _local_0_[1]
 local config = _local_0_[2]
 local float = _local_0_[3]
 local minimap = _local_0_[4]
 local nvim = _local_0_[5]
-local _2amodule_2a = _0_0
+local _2amodule_2a = _0_
 local _2amodule_name_2a = "nvim-minimap.main"
-do local _ = ({nil, _0_0, nil, {{}, nil, nil, nil}})[2] end
+do local _ = ({nil, _0_, nil, {{}, nil, nil, nil}})[2] end
 local state
 do
-  local v_0_ = (((_0_0)["aniseed/locals"]).state or {["running-timer"] = nil, opened = false})
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local v_0_ = ((_0_)["aniseed/locals"].state or {["running-timer"] = nil, opened = false})
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["state"] = v_0_
   state = v_0_
 end
@@ -53,7 +58,7 @@ do
     return ("lua require('" .. _2amodule_name_2a .. "')['" .. name .. "'](" .. ((opts and opts.args) or "") .. ")")
   end
   v_0_ = viml__3elua0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["viml->lua"] = v_0_
   viml__3elua = v_0_
 end
@@ -89,7 +94,7 @@ do
     end
   end
   v_0_ = calc_display_range0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["calc-display-range"] = v_0_
   calc_display_range = v_0_
 end
@@ -103,7 +108,7 @@ do
     return float["highlight-range"](range.current)
   end
   v_0_ = render0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["render"] = v_0_
   render = v_0_
 end
@@ -117,7 +122,7 @@ do
     end
   end
   v_0_ = stop_timer0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["stop-timer"] = v_0_
   stop_timer = v_0_
 end
@@ -131,32 +136,32 @@ do
         local buf = vim.fn.bufnr("%")
         local ft = nvim.bo[buf].ft
         local excludes_3f
-        local function _2_(x)
+        local function _3_(x)
           return (x == ft)
         end
-        excludes_3f = a.some(_2_, config["get-in"]({"filetype", "excludes"}))
+        excludes_3f = a.some(_3_, config["get-in"]({"filetype", "excludes"}))
         if not excludes_3f then
           if state["running-timer"] then
             stop_timer(state["running-timer"])
             state["running-timer"] = nil
           end
           local timer = vim.loop.new_timer()
-          local function _4_()
+          local function _5_()
             float["clear-buf"]()
             render(buf)
             return stop_timer(timer)
           end
-          timer:start(20, 0, vim.schedule_wrap(_4_))
+          timer:start(20, 0, vim.schedule_wrap(_5_))
           state["running-timer"] = timer
           return nil
         end
       end
     end
     v_0_0 = refresh0
-    _0_0["refresh"] = v_0_0
+    _0_["refresh"] = v_0_0
     v_0_ = v_0_0
   end
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["refresh"] = v_0_
   refresh = v_0_
 end
@@ -172,10 +177,10 @@ do
       return render(buf)
     end
     v_0_0 = open0
-    _0_0["open"] = v_0_0
+    _0_["open"] = v_0_0
     v_0_ = v_0_0
   end
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["open"] = v_0_
   open = v_0_
 end
@@ -189,10 +194,10 @@ do
       return float["close-win"]()
     end
     v_0_0 = close0
-    _0_0["close"] = v_0_0
+    _0_["close"] = v_0_0
     v_0_ = v_0_0
   end
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["close"] = v_0_
   close = v_0_
 end
@@ -209,10 +214,10 @@ do
       end
     end
     v_0_0 = toggle0
-    _0_0["toggle"] = v_0_0
+    _0_["toggle"] = v_0_0
     v_0_ = v_0_0
   end
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["toggle"] = v_0_
   toggle = v_0_
 end
@@ -226,7 +231,7 @@ do
     return nvim.ex.command_("MinimapRefresh", viml__3elua("refresh", {}))
   end
   v_0_ = init_commands0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["init-commands"] = v_0_
   init_commands = v_0_
 end
@@ -236,11 +241,11 @@ do
   local function init_autocmds0()
     nvim.ex.augroup("MinimapAutocmds")
     nvim.ex.autocmd_()
-    nvim.ex.autocmd("WinEnter,BufEnter,FocusGained,CursorMoved,CursorMovedI,VimResized,QuitPre", "*", ("silent! " .. viml__3elua("refresh", {})))
+    nvim.ex.autocmd("WinEnter,BufEnter,FocusGained,CursorMoved,CursorMovedI,VimResized", "*", ("silent! " .. viml__3elua("refresh", {})))
     return nvim.ex.augroup("END")
   end
   v_0_ = init_autocmds0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["init-autocmds"] = v_0_
   init_autocmds = v_0_
 end
@@ -251,7 +256,7 @@ do
     return nvim.ex.highlight("MinimapCurrentLine ctermfg=green guifg=green")
   end
   v_0_ = define_highlights0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["define-highlights"] = v_0_
   define_highlights = v_0_
 end
@@ -268,10 +273,10 @@ do
       end
     end
     v_0_0 = init0
-    _0_0["init"] = v_0_0
+    _0_["init"] = v_0_0
     v_0_ = v_0_0
   end
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["init"] = v_0_
   init = v_0_
 end

@@ -1,4 +1,5 @@
-local _0_0
+local _2afile_2a = "fnl/nvim-minimap/float.fnl"
+local _0_
 do
   local name_0_ = "nvim-minimap.float"
   local module_0_
@@ -12,35 +13,39 @@ do
   end
   module_0_["aniseed/module"] = name_0_
   module_0_["aniseed/locals"] = ((module_0_)["aniseed/locals"] or {})
-  module_0_["aniseed/local-fns"] = ((module_0_)["aniseed/local-fns"] or {})
-  package.loaded[name_0_] = module_0_
-  _0_0 = module_0_
+  do end (module_0_)["aniseed/local-fns"] = ((module_0_)["aniseed/local-fns"] or {})
+  do end (package.loaded)[name_0_] = module_0_
+  _0_ = module_0_
 end
-local autoload = (require("nvim-minimap.aniseed.autoload")).autoload
+local autoload
 local function _1_(...)
+  return (require("nvim-minimap.aniseed.autoload")).autoload(...)
+end
+autoload = _1_
+local function _2_(...)
   local ok_3f_0_, val_0_ = nil, nil
-  local function _1_()
+  local function _2_()
     return {autoload("nvim-minimap.aniseed.core"), autoload("nvim-minimap.config"), autoload("nvim-minimap.aniseed.nvim")}
   end
-  ok_3f_0_, val_0_ = pcall(_1_)
+  ok_3f_0_, val_0_ = pcall(_2_)
   if ok_3f_0_ then
-    _0_0["aniseed/local-fns"] = {autoload = {a = "nvim-minimap.aniseed.core", config = "nvim-minimap.config", nvim = "nvim-minimap.aniseed.nvim"}}
+    _0_["aniseed/local-fns"] = {autoload = {a = "nvim-minimap.aniseed.core", config = "nvim-minimap.config", nvim = "nvim-minimap.aniseed.nvim"}}
     return val_0_
   else
     return print(val_0_)
   end
 end
-local _local_0_ = _1_(...)
+local _local_0_ = _2_(...)
 local a = _local_0_[1]
 local config = _local_0_[2]
 local nvim = _local_0_[3]
-local _2amodule_2a = _0_0
+local _2amodule_2a = _0_
 local _2amodule_name_2a = "nvim-minimap.float"
-do local _ = ({nil, _0_0, nil, {{}, nil, nil, nil}})[2] end
+do local _ = ({nil, _0_, nil, {{}, nil, nil, nil}})[2] end
 local state
 do
-  local v_0_ = (((_0_0)["aniseed/locals"]).state or {["buf-id"] = nil, ["win-id"] = nil})
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local v_0_ = ((_0_)["aniseed/locals"].state or {["buf-id"] = nil, ["win-id"] = nil})
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["state"] = v_0_
   state = v_0_
 end
@@ -55,7 +60,7 @@ do
     end
   end
   v_0_ = min0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["min"] = v_0_
   min = v_0_
 end
@@ -66,7 +71,7 @@ do
     return nvim.o.columns
   end
   v_0_ = editor_width0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["editor-width"] = v_0_
   editor_width = v_0_
 end
@@ -77,7 +82,7 @@ do
     return nvim.o.lines
   end
   v_0_ = editor_height0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["editor-height"] = v_0_
   editor_height = v_0_
 end
@@ -90,7 +95,7 @@ do
     return buf
   end
   v_0_ = make_buf0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["make-buf"] = v_0_
   make_buf = v_0_
 end
@@ -107,7 +112,7 @@ do
     return win
   end
   v_0_ = make_win0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["make-win"] = v_0_
   make_win = v_0_
 end
@@ -128,10 +133,10 @@ do
       end
     end
     v_0_0 = open_win0
-    _0_0["open-win"] = v_0_0
+    _0_["open-win"] = v_0_0
     v_0_ = v_0_0
   end
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["open-win"] = v_0_
   open_win = v_0_
 end
@@ -148,10 +153,10 @@ do
       end
     end
     v_0_0 = close_win0
-    _0_0["close-win"] = v_0_0
+    _0_["close-win"] = v_0_0
     v_0_ = v_0_0
   end
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["close-win"] = v_0_
   close_win = v_0_
 end
@@ -163,18 +168,18 @@ do
     local function write_arr_to_buf0(arr)
       if state["buf-id"] then
         local trim_by_width
-        local function _2_(x)
+        local function _3_(x)
           return nvim.fn.strcharpart(x, 0, config["get-in"]({"window", "width"}))
         end
-        trim_by_width = _2_
+        trim_by_width = _3_
         return nvim.buf_set_lines(state["buf-id"], 0, -1, true, a.map(trim_by_width, arr))
       end
     end
     v_0_0 = write_arr_to_buf0
-    _0_0["write-arr-to-buf"] = v_0_0
+    _0_["write-arr-to-buf"] = v_0_0
     v_0_ = v_0_0
   end
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["write-arr-to-buf"] = v_0_
   write_arr_to_buf = v_0_
 end
@@ -190,7 +195,7 @@ do
     end
   end
   v_0_ = clear_highlights0
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["clear-highlights"] = v_0_
   clear_highlights = v_0_
 end
@@ -204,10 +209,10 @@ do
       return write_arr_to_buf({})
     end
     v_0_0 = clear_buf0
-    _0_0["clear-buf"] = v_0_0
+    _0_["clear-buf"] = v_0_0
     v_0_ = v_0_0
   end
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["clear-buf"] = v_0_
   clear_buf = v_0_
 end
@@ -222,10 +227,10 @@ do
       end
     end
     v_0_0 = window_info0
-    _0_0["window-info"] = v_0_0
+    _0_["window-info"] = v_0_0
     v_0_ = v_0_0
   end
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["window-info"] = v_0_
   window_info = v_0_
 end
@@ -234,8 +239,8 @@ do
   local v_0_
   do
     local v_0_0
-    local function highlight_range0(_2_0)
-      local _arg_0_ = _2_0
+    local function highlight_range0(_3_)
+      local _arg_0_ = _3_
       local bottom = _arg_0_["bottom"]
       local top = _arg_0_["top"]
       if state["win-id"] then
@@ -247,12 +252,12 @@ do
       end
     end
     v_0_0 = highlight_range0
-    _0_0["highlight-range"] = v_0_0
+    _0_["highlight-range"] = v_0_0
     v_0_ = v_0_0
   end
-  local t_0_ = (_0_0)["aniseed/locals"]
+  local t_0_ = (_0_)["aniseed/locals"]
   t_0_["highlight-range"] = v_0_
   highlight_range = v_0_
 end
--- (def buf (nvim.create_buf false true)) (def opts table: 0x7fe62e845850) (nvim.open_win buf 0 opts) (make-buf-and-win) (open-win) (write-arr-to-buf table: 0x7fe62e5c6a90) (write-arr-to-buf table: 0x7fe62e6a93f8) (clear-buf) (close-win) (window-info)
+-- (def buf (nvim.create_buf false true)) (def opts table: 0x7fbc063d0108) (nvim.open_win buf 0 opts) (make-buf-and-win) (open-win) (write-arr-to-buf table: 0x7fbc06245778) (write-arr-to-buf table: 0x7fbc05e8dc00) (clear-buf) (close-win) (window-info)
 return nil

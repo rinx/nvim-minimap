@@ -111,7 +111,7 @@
   (nvim.ex.augroup :MinimapAutocmds)
   (nvim.ex.autocmd_)
   (nvim.ex.autocmd
-    "WinEnter,BufEnter,FocusGained,CursorMoved,CursorMovedI,VimResized,QuitPre" "*"
+    "WinEnter,BufEnter,FocusGained,CursorMoved,CursorMovedI,VimResized" "*"
     (.. "silent! " (viml->lua :refresh {})))
   (nvim.ex.augroup :END))
 
